@@ -57,7 +57,7 @@ SELECT idProyecto as 'Identificador proyecto',
        NoRecibo as 'Numero Recibo',
        CedulaTrabajador as 'Cedula de trabajador'
 FROM Proyecto
-ORDER BY 'Identificador proyecto' DESC
+ORDER BY 'Identificador proyecto' DESC;
 
 -- Selecciona los trabajadores que tienen proyecto mostrar:
 -- nombre, apellido y id del proyecto
@@ -66,4 +66,25 @@ SELECT Nombre as 'Nombre trabajador',
        idProyecto as 'Identificador de proyecto'
 FROM Trabajador
 INNER JOIN Proyecto ON Trabajador.CedulaTrabajador = Proyecto.CedulaTrabajador
-ORDER BY 'Identificador de proyecto'
+ORDER BY 'Identificador de proyecto';
+
+-- Mostrar la cantidad de proyectos que tiene cada trabajador
+(SELECT Nombre as 'Nombre trabajador',
+       Apellido,
+       COUNT(idProyecto) as 'Cantidad de Proyectos'
+FROM Trabajador
+LEFT JOIN Proyecto ON Trabajador.CedulaTrabajador = Proyecto.CedulaTrabajador
+WHERE idProyecto IS NULL
+GROUP BY 'Nombre Trabajador')
+UNION
+(SELECT Nombre as 'Nombre trabjador',
+       Apellido,
+       COUNT(idProyecto) as 'Cantidad de Proyectos'
+FROM Trabajador
+INNER JOIN Proyecto ON Trabajador.CedulaTrabajador = Proyecto.CedulaTrabajador
+GROUP BY 'Nombre Trabajador');
+
+-- Actualizar el numero de recibo de un proyecto
+UPDATE Proyecto
+SET NoRecibo = 'Nuevo numero de recibo'
+WHERE CedulaTrabajador = 'Cedula de un trabajador';
