@@ -162,3 +162,34 @@ ORDER BY Cedula;
 -- Elimina todos los numeros de un cliente
 DELETE FROM TelefonoCliente
 WHERE Cedula = 'numero de cedula de cliente';
+
+-- Mostrar cantidad de telefonos por cliente
+SELECT Nombre,
+       Apellido,
+       COUNT(Numero1) as 'Cantidad de Telefonos'
+FROM Cliente
+LEFT JOIN TelefonoCliente ON Cliente.CedulaUsuario = TelefonoCliente.Cedula
+GROUP BY Nombre
+ORDER BY 'Cantidad de Telefonos' DESC;
+
+-- Actualizar el numero de referencia para el cliente con
+-- cedula = 'xxx-xxxxxx-xxxxx'
+UPDATE TelefonoCliente
+SET NumeroReferencia = 'Numero nuevo'
+WHERE Cedula = 'xxx-xxxxxx-xxxxx';
+
+
+-- Tabla: TramiteCliente
+-- Campos: IdRecibo(VARCHAR(25)), Monto(FLOAT), Fecha(DATETIME), Descripcion(VARCHAR(500))
+-- Direccion(VARCHAR(150)), IdTramite(VARCHAR(25)), CedulaUsuario(VARCHAR(16))
+
+-- Insertar un tramite de un cliente
+INSERT INTO TramiteCliente VALUES(
+        'Identificador de recibo',
+        3000, -- Monto del tramite
+        '22/5/18',
+        'Descripcion del tramite',
+        'Direccion de donde se realizara el tramite',
+        1, -- Identificador del tramite
+        'xxx-xxxxxx-xxxxx' 
+);
