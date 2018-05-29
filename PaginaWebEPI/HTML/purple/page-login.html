@@ -45,19 +45,19 @@
 
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Cedula de Identidad">
+                            <input class="form-control" type="text" required="" placeholder="Cedula de Identidad" id="InputCedula">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="Nombre">
+                            <input class="form-control" type="password" required="" placeholder="Nombre" id="InputNombre">
                         </div>
                     </div>
 
                     <div class="form-group text-center m-t-40">
                         <div class="col-xs-12">
-                            <button class="btn btn-info btn-block text-uppercase waves-effect waves-light" type="submit">Entrar</button>
+                            <button class="btn btn-info btn-block text-uppercase waves-effect waves-light" id="loginButton" type="submit">Entrar</button>
                         </div>
                     </div>
 
@@ -68,7 +68,22 @@
 
     </div>
 
+    <script>
+        document.getElementById("loginButton").addEventListener('click', function() {
+            var cedula = document.getElementById("InputCedula").value;
+            var nombre = document.getElementById("InputNombre").value;
 
+            if ((cedula == "exitoso") && (nombre == "exitoso")) {
+                window.open('Exitoso.html');
+            } else if ((cedula == "rechazado") && (nombre == "rechazado")) {
+                window.open('Rechazado.html');
+            } else if ((cedula == "sinrespuesta") && (nombre == "sinrespuesta")) {
+                window.open("SinRespuesta.html")
+            }
+
+
+        });
+    </script>
 
 
     <script>
